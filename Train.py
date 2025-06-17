@@ -17,7 +17,7 @@ class IRCTC:
         train_no=input("Enter the train no")
         self.fetch_data(train_no)
     def fetch_data(self,train_no):
-       data= requests.get("https://indianrailapi.com/api/v2/TrainSchedule/apikey/00f3a5295cabaf2c06ab79c44a6428df/TrainNumber/{}".format(train_no))   
+       data= requests.get("https://indianrailapi.com/api/v2/TrainSchedule/apikey/API key/TrainNumber/{}".format(train_no))   
        data=data.json()
        print(data['Route'])
 
