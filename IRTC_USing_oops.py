@@ -35,12 +35,16 @@ users = {
 class IRTC:
     def __init__(self):
         self.user = input("enter your username: ").strip().lower()  
+        if self.user not in users:
+            print("\n Invalid username.\n")
+            exit()  
         passw = input("enter your password: ").strip()
         if self.user in users and users[self.user]["password"] == passw:
             print(f"\n Login Successful! Welcome, {self.user}\n")
             self.calculate_fare()
         else:
             print("\n Invalid username or password.\n")
+            exit() 
 
     def calculate_fare(self):
         stations = {
