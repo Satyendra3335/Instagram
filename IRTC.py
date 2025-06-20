@@ -41,16 +41,14 @@ class IRTC:
             "E": 20,
             "F": 25
         }
-        self.start = None
-        self.end = None
-
         self.user = input("Enter your username: ").strip().lower()
         if self.user not in users:
             print("\nInvalid username.\n")
             exit()
         passw = input("Enter your password: ").strip()
         if users[self.user]["password"] == passw:
-            print(f"\nLogin Successful! Welcome, {self.user}\n")
+            print(f"\nLogin Successful! Welcome, {self.user}")
+            print(f"Current wallet balance: ₹{users[self.user]['wallet']}\n")
             self.menu() 
         else:
             print("\nInvalid username or password.\n")
@@ -64,6 +62,7 @@ class IRTC:
             print("3. Show All Available Stations")
             print("4. Calculate Fare")
             print("5. Exit")
+            print("6. Add Amount to Wallet")
             choice = input("Enter your choice: ").strip()
 
             if choice == "1":
@@ -77,6 +76,8 @@ class IRTC:
             elif choice == "5":
                 print("Thank you for using IRTC!")
                 break
+            elif choice == "6":
+                self.add_to_wallet()
             else:
                 print("Invalid choice")
 
@@ -120,5 +121,17 @@ class IRTC:
         else:
             print("Insufficient Balance")
 
-# Run the system
+    def add_to_wallet(self):
+        amt_input = input("Enter amount to add:").strip()
+        if amt_input.isdigit():
+            amt = int(amt_input)
+            if amt > 0:
+                users[self.user]["wallet"] += amt
+                print(f"{amt} added successfully!")
+                print(f"Updated wallet balance: {users[self.user]['wallet']}")
+            else:
+                print("Amount must be greater than 0.")
+        else:
+            print("Invalid input. Please enter a positive number.")
+
 IRTC()
